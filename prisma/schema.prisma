@@ -12,3 +12,67 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Journal {
+  id         String   @id @default(cuid())
+  title      String
+  isDraft    Boolean  @default(false)
+  date       DateTime
+  summary    String
+  rawContent String   @db.Text
+  aiContent  String   @db.Text
+  userId     String
+  entries    Entry[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, date], name: "user_journal_unique")
+  @@map("journals")
+}
+
+model Entry {
+  id        String   @id @default(cuid())
+  name      String
+  body      String   @db.Text
+  location  String?
+  tags      String[]
+  mood      Mood     @default(NEUTRAL)
+  journalId String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  journal   Journal  @relation(fields: [journalId], references: [id])
+
+  @@map("entries")
+}
+
+enum Mood {
+  HAPPY
+  SAD
+  ANGRY
+  NEUTRAL
+  EXCITED
+  CONFUSED
+  ANXIOUS
+  CALM
+  GRATEFUL
+  HOPEFUL
+  OVERWHELMED
+  RELAXED
+  FRUSTRATED
+  MOTIVATED
+  INSPIRED
+  CONTENT
+  DISAPPOINTED
+  BORED
+  CURIOUS
+  NOSTALGIC
+  SCARED
+  LONELY
+  EMBARRASSED
+  PROUD
+  ASHAMED
+  JEALOUS
+  SURPRISED
+  WORRIED
+}
