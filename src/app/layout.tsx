@@ -31,7 +31,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col`}
         >
           <Navbar />
-          <main className="container mx-auto px-3 md:px-0">{children}</main>
+          {children}
         </body>
       </html>
     </ClerkProvider>

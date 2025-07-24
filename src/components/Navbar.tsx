@@ -6,7 +6,7 @@ import Link from "next/link";
 const Navbar = async () => {
   const { userId } = await auth();
   return (
-    <header className="bg-background sticky top-0 flex h-16 items-center justify-between border-b px-6">
+    <header className="bg-background sticky top-0 z-50 flex h-16 items-center justify-between border-b px-6">
       <Link className="flex items-center gap-1" href={"/my-journals"}>
         <NotebookText />
         <h1 className="text-xl font-semibold">Journal-ai</h1>
