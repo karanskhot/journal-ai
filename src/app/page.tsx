@@ -1,5 +1,3 @@
-import { db } from "@/lib/db";
-
 const Home = async () => {
   return <div>Home</div>;
 };
