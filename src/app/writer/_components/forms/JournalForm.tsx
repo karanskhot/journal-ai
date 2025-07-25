@@ -17,8 +17,11 @@ interface IJournalFormTypes {
   toggleWriterPanel: () => void;
 }
 const JournalForm = ({ toggleWriterPanel }: IJournalFormTypes) => {
-  const { register } = useFormContext<JournalWriterValues>();
-
+  const { register, getValues } = useFormContext<JournalWriterValues>();
+  const createNewJournal = async (data: JournalWriterValues) => {
+    // You can use 'data' here to create a journal
+    console.log(data);
+  };
   return (
     <div className="mx-auto max-w-xl p-2">
       <Card>
@@ -40,7 +43,15 @@ const JournalForm = ({ toggleWriterPanel }: IJournalFormTypes) => {
         </CardContent>
 
         <CardFooter className="flex flex-col items-end justify-end">
-          <Button onClick={toggleWriterPanel}>Next</Button>
+          <Button
+            onClick={() => {
+              const formData = getValues();
+              createNewJournal({ ...formData });
+              toggleWriterPanel();
+            }}
+          >
+            Next
+          </Button>
         </CardFooter>
       </Card>
     </div>

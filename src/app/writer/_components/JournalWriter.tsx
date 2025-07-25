@@ -27,7 +27,6 @@ const JournalWriter = () => {
     <div className="flex grow flex-col">
       <h1 className="py-2 text-center text-2xl font-semibold">
         Start reflecting your day here. And see magic unfold!
-        <h1>Today Journal - client : ${new Date().toLocaleTimeString()}</h1>
       </h1>
 
       <main className="bg-secondary relative grow">
