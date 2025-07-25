@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { JournalValues, JournalWriterValues } from "@/lib/validations";
 import { isSameDay } from "date-fns";
 import { Journal } from "@prisma/client";
+import { format } from "date-fns";
 
 const JournalEntries = ({ data }: { data: Journal[] }) => {
   const today = new Date();
@@ -22,6 +23,7 @@ const JournalEntries = ({ data }: { data: Journal[] }) => {
 
   return (
     <div className="space-y-4">
+      <h1 className="text-5xl font-extrabold">Made this a client component</h1>
       {/* Show create card if no journal for today */}
       {!todayJournal && (
         <div className="bg-muted text-muted-foreground rounded border p-4">
@@ -44,10 +46,8 @@ const JournalEntries = ({ data }: { data: Journal[] }) => {
           <h2 className="text-lg font-semibold">Previous Journals</h2>
           {pastJournals.map((j) => (
             <div key={j.id} className="rounded border p-3">
-              <p>{j.title}</p>
-              <p className="text-muted-foreground text-sm">
-                {new Date(j.createdAt).toString()}
-              </p>
+              <h1>{format(new Date(j.createdAt), "MM dd yyyy HH:mm:ss")}</h1>
+              <h1>{new Date(j.createdAt).toLocaleTimeString()}</h1>
             </div>
           ))}
         </div>

@@ -6,7 +6,7 @@ const MyJournals = async () => {
   // await create_new_journal();
   const data = await get_all_journals();
 
-  // return <JournalEntries data={data} />;
+  // return ;
   return (
     <div>
       {data.map((d) => (
@@ -17,6 +17,7 @@ const MyJournals = async () => {
           <p>======</p>
         </div>
       ))}
+      <JournalEntries data={data} />
     </div>
   );
 };
