@@ -9,17 +9,15 @@ datasource db {
 
 model Journal {
   id          String   @id @default(cuid())
-  title       String?
+  title       String
   isDraft     Boolean  @default(true)
-  date        DateTime @default(now())
   userId      String
-  userSummary String?  @db.Text
-  aiSummary   String?  @db.Text
+  userSummary String   @db.Text
+  aiSummary   String   @db.Text
   entries     Entry[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@unique([userId, date], name: "unique_userId_date")
   @@index([createdAt])
   @@map("journals")
 }
