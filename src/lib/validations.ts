@@ -1,10 +1,9 @@
-import { title } from "process";
 import { z } from "zod";
 
 export const journalSchema = z.object({
   title: z.string().optional(),
-  isDraft: z.boolean(),
-  date: z.date(),
+  isDraft: z.boolean().optional(),
+  date: z.string(),
 });
 
 export type JournalValues = z.infer<typeof journalSchema>;
@@ -22,3 +21,12 @@ export const entrySchema = z.object({
     )
     .min(1, "atleast one entry is required."),
 });
+
+export type EntryValues = z.infer<typeof entrySchema>;
+
+export const journalWriterSchema = z.object({
+  ...journalSchema.shape,
+  ...entrySchema.shape,
+});
+
+export type JournalWriterValues = z.infer<typeof journalWriterSchema>;

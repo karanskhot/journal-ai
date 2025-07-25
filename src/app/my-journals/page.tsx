@@ -1,12 +1,15 @@
+import { find_create_unique_journal } from "@/actions/journals";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
-const MyJournals = () => {
+const MyJournals = async () => {
   return (
     <div className="">
-      <Button asChild>
-        <Link href={"/writer"}>Write-Journal</Link>
-      </Button>
+      <div className="">
+        <h1>Today Journal : ${new Date().toLocaleTimeString()}</h1>
+      </div>
+      <form action={find_create_unique_journal}>
+        <Button type="submit">Create Journal</Button>
+      </form>
     </div>
   );
 };
