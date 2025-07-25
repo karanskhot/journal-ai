@@ -12,7 +12,7 @@ export const entrySchema = z.object({
   entries: z
     .array(
       z.object({
-        title: z.string().min(1).max(40),
+        title: z.string().min(1).max(80),
         body: z.string(),
       }),
     )
